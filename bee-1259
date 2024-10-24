@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+void print(int vetorfun[], int tam){
+	int n;
+	
+	for(n=0;n<tam;n++){
+		printf("%d\n",vetorfun[n]);
+	}
+}
+
+void shellsort(int vetor[], int tam){
+	int vetork[3]={5,3,1};
+	int k,i,j,aux,indk;
+	
+	for(indk=0;indk<3;indk++){
+		k=vetork[indk];
+		for(i=k;i<tam;i++){
+			aux=vetor[i];
+			if(vetor[i]%2==0){
+			    for(j=i-k;j>=0 && vetor[j]>aux;j-=k){
+			        vetor[j+k]=vetor[j];
+			    }
+			    vetor[j+k]=aux;
+            }else{
+			    for(j=i-k;j>=0 && vetor[j]<aux;j-=k){
+			        vetor[j+k]=vetor[j];
+			    }
+			    vetor[j+k]=aux;            	
+			}
+		}
+	}
+}
+
+int main(){
+	int vetpar[100000],vetimpar[100000];
+	int ipar,iimpar,i,n,qtd;
+	
+	scanf("%d",&qtd);
+	
+	for(i=0,ipar=0,iimpar=0;i<qtd;i++){
+		scanf("%d",&n);
+		if(n%2==0){
+			vetpar[ipar]=n;
+			ipar++;
+		}else{
+			vetimpar[iimpar]=n;
+			iimpar++;
+		}
+	}
+	
+	shellsort(vetpar,ipar);
+	print(vetpar,ipar);
+	
+	shellsort(vetimpar,iimpar);
+	print(vetimpar,iimpar);
+	
+	return 0;
+}
