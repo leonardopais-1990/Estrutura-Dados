@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+void bublesort(int vetorfun[],int tam){
+	int n,i,changes=0,aux;
+
+	for(i=tam;i>0;i--){
+		for(n=0;n<tam-1;n++){
+			if(vetorfun[n]>vetorfun[n+1]){
+				changes++;
+				aux=vetorfun[n];
+				vetorfun[n]=vetorfun[n+1];
+				vetorfun[n+1]=aux;
+			}
+		}
+	}
+	printf("Optimal train swapping takes %d swaps.\n",changes);
+}
+
+int main(){
+	int testcase,n,i,tam,vetor[3];
+	
+	scanf("%d",&testcase);
+	
+	while(testcase>0){
+		scanf("%d",&tam);
+		int vetor[tam];
+		for(i=0;i<tam;i++){
+			scanf("%d",&vetor[i]);
+		}
+		bublesort(vetor,tam);
+		testcase--;
+	}
+	
+	return 0;
+}
